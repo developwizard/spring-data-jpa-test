@@ -1,5 +1,6 @@
 package com.dewiz.springdatajpatest.repository;
 
+import com.dewiz.springdatajpatest.entity.Guardian;
 import com.dewiz.springdatajpatest.entity.Student;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +16,35 @@ class StudentRepositoryTest {
     @Test
     void saveStudent() {
         Student student = Student.builder()
-                .emailId("ivanov@gmail.com")
+                .emailId("ivanov1@gmail.com")
                 .firstName("Ivan")
                 .lastName("Ivanov")
-                .guardianName("Petr")
-                .guardianEmail("Petrov")
-                .guardianMobile("9999999999")
+//                .guardianName("Petr")
+//                .guardianEmail("Petrov")
+//                .guardianMobile("9999999999")
+                .build();
+        studentRepository.save(student);
+    }
+
+    @Test
+    void saveStudentWithGuardian() {
+        Student student = Student.builder()
+                .emailId("olegov@gmail.com")
+                .firstName("Oleg")
+                .lastName("Olegov")
+                .guardian(
+                        new Guardian(
+                                "Fin",
+                                "Finov",
+                                "9999999999")
+                )
                 .build();
         studentRepository.save(student);
     }
 
     @Test
     void printAllStudents() {
-        List<Student> students =  studentRepository.findAll();
+        List<Student> students = studentRepository.findAll();
         System.out.println(students);
     }
 }
