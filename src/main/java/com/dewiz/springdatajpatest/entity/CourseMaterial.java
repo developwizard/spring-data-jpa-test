@@ -22,9 +22,12 @@ public class CourseMaterial {
     )
     private Long courseMaterialId;
     private String url;
+    // optional = false - doesn't allow to save courses
+    // without courseMaterial
     @OneToOne(
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
+            fetch = FetchType.LAZY,
+            optional = false
     )
     @JoinColumn(
             name = "course_id",
