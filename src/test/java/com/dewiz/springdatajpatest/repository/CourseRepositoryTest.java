@@ -1,6 +1,7 @@
 package com.dewiz.springdatajpatest.repository;
 
 import com.dewiz.springdatajpatest.entity.Course;
+import com.dewiz.springdatajpatest.entity.Student;
 import com.dewiz.springdatajpatest.entity.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,5 +68,29 @@ class CourseRepositoryTest {
         List<Course> courses = courseRepository.findByTitleContaining("D", firstPageTenRecords).getContent();
 
         System.out.println(courses);
+    }
+
+    @Test
+    void saveCourseWithStudentAndTeacher() {
+        Teacher teacher = Teacher.builder()
+                .firstName("Anna")
+                .lastName("Anovich")
+                .build();
+
+        Student student = Student.builder()
+                .firstName("Olga")
+                .lastName("Olgovich")
+                .emailId("olgovich@gmail.com")
+                .build();
+
+        Course course = Course.builder()
+                .title("AI")
+                .credit(12)
+                .teacher(teacher)
+                .build();
+
+        course.addStudent(student);
+
+        courseRepository.save(course);
     }
 }
