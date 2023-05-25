@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
-
 @SpringBootTest
 class TeacherRepositoryTest {
     @Autowired
@@ -28,7 +26,7 @@ class TeacherRepositoryTest {
         Teacher teacher = Teacher.builder()
                 .firstName("Boris")
                 .lastName("Borisov")
-                .courses(List.of(courseDBA, courseJava))
+//                .courses(List.of(courseDBA, courseJava))
                 .build();
         teacherRepository.save(teacher);
     }
